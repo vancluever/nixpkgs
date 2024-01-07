@@ -11,7 +11,11 @@
 }:
 
 args:
-
+let
+  dlSubPath =
+    if args.version == "0.12.0"
+    then "lib/std/zig/system.zig" else "lib/std/zig/system/NativeTargetInfo.zig";
+in
 stdenv.mkDerivation (finalAttrs: {
   pname = "zig";
 
@@ -41,7 +45,7 @@ stdenv.mkDerivation (finalAttrs: {
   # Zig's build looks at /usr/bin/env to find dynamic linking info. This doesn't
   # work in Nix's sandbox. Use env from our coreutils instead.
   postPatch = ''
-    substituteInPlace lib/std/zig/system/NativeTargetInfo.zig \
+    substituteInPlace ${dlSubPath} \
       --replace "/usr/bin/env" "${coreutils}/bin/env"
   '';
 
