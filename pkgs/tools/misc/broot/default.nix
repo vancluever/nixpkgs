@@ -8,6 +8,7 @@
 , libgit2
 , oniguruma
 , libiconv
+, Foundation
 , Security
 , xorg
 , zlib
@@ -17,16 +18,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "broot";
-  version = "1.30.1";
+  version = "1.31.0";
 
   src = fetchFromGitHub {
     owner = "Canop";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-AGdP60eOrkFsey5BrIG0mkbNE3Ba+/2Q8HlKmEqrHug=";
+    hash = "sha256-orZAJtQwJ2pFG7c+VcOsck3o06qzMxLZYqRMqMhCZAw=";
   };
 
-  cargoHash = "sha256-Pnobq/m/K0+YL5FDFbSAWSoSPdmFvcL3zPVbI2IPgvs=";
+  cargoHash = "sha256-JQxvjt0rWwZAmWPfV120Olxf4iTVqMqUFGRdLlnT2Lw=";
 
   nativeBuildInputs = [
     installShellFiles
@@ -35,6 +36,7 @@ rustPlatform.buildRustPackage rec {
   ];
 
   buildInputs = [ libgit2 oniguruma xorg.libxcb ] ++ lib.optionals stdenv.isDarwin [
+    Foundation
     libiconv
     Security
     zlib

@@ -524,7 +524,6 @@ with lib.maintainers; {
       dtzWill
       ericson2314
       lovek323
-      primeos
       qyliss
       raitobezarius
       rrbutani
@@ -767,7 +766,6 @@ with lib.maintainers; {
 
   podman = {
     members = [
-      adisbladis
       saschagrunert
       vdemeester
     ];
