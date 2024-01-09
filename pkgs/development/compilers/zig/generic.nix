@@ -70,6 +70,7 @@ stdenv.mkDerivation (finalAttrs: {
     changelog = "https://ziglang.org/download/${finalAttrs.version}/release-notes.html";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ andrewrk ] ++ lib.teams.zig.members;
+    mainProgram = "zig";
     platforms = lib.platforms.unix;
   };
 } // removeAttrs args [ "hash" ])
