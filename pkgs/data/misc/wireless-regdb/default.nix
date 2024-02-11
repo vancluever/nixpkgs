@@ -1,4 +1,4 @@
-{ lib, stdenvNoCC, fetchurl }:
+{ lib, stdenvNoCC, fetchurl, directoryListingUpdater, crda }:
 
 stdenvNoCC.mkDerivation rec {
   pname = "wireless-regdb";
@@ -6,7 +6,7 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchurl {
     url = "https://www.kernel.org/pub/software/network/${pname}/${pname}-${version}.tar.xz";
-    sha256 = "sha256-JtTCpyfMWSObhHNarYVrfH0LBOMKpcI1xPf0f18FNJE=";
+    hash = "sha256-JtTCpyfMWSObhHNarYVrfH0LBOMKpcI1xPf0f18FNJE=";
   };
 
   dontBuild = true;
@@ -15,6 +15,13 @@ stdenvNoCC.mkDerivation rec {
     "DESTDIR=${placeholder "out"}"
     "PREFIX="
   ];
+
+  passthru = {
+    tests = {
+      inherit crda; # validate data base signature
+    };
+    updateScript = directoryListingUpdater { };
+  };
 
   meta = with lib; {
     description = "Wireless regulatory database for CRDA";
