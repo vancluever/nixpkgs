@@ -14,8 +14,8 @@ import ./generic.nix args {
   version = "0.12.0";
 
   src = fetchzip {
-    url = "https://ziglang.org/builds/zig-0.12.0-dev.2701+d18f52197.tar.xz";
-    hash = "sha256-h63lG7R4nw3Sg5T4lHco8I39lPQWzwmEYGiRcPLKlAM=";
+    url = "https://ziglang.org/builds/zig-0.12.0-dev.2711+f995c1b08.tar.xz";
+    hash = "sha256-FxVPyxK3cDnmIhFS/CGOzuFNDwFyOjiEiTsXIi/3dLY=";
   };
 
   outputs = [ "out" "doc" ];
