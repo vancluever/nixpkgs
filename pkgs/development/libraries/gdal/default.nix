@@ -79,13 +79,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gdal";
-  version = "3.8.3";
+  version = "3.8.4";
 
   src = fetchFromGitHub {
     owner = "OSGeo";
     repo = "gdal";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-GYBGGZ2bobVYElO0WJrsQzLMdNR5AfQwgdjBtPeGH1g=";
+    hash = "sha256-R9VLof13OXPbWGHOG1Q4WZWSPoF739C6WuNWxoIwKTw=";
   };
 
   nativeBuildInputs = [
@@ -198,8 +198,9 @@ stdenv.mkDerivation (finalAttrs: {
     ++ darwinDeps
     ++ nonDarwinDeps;
 
+  pythonPath = [ python3.pkgs.numpy ];
   postInstall = ''
-    wrapPythonPrograms
+    wrapPythonProgramsIn "$out/bin" "$out $pythonPath"
   '' + lib.optionalString useJava ''
     cd $out/lib
     ln -s ./jni/libgdalalljni${stdenv.hostPlatform.extensions.sharedLibrary}

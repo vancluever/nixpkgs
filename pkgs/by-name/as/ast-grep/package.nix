@@ -6,16 +6,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "ast-grep";
-  version = "0.18.1";
+  version = "0.19.1";
 
   src = fetchFromGitHub {
     owner = "ast-grep";
     repo = "ast-grep";
     rev = version;
-    hash = "sha256-hr6VAqBsv3szVClR93y5ickkrNKjvl6BfzqKA3zc6vM=";
+    hash = "sha256-uRAWcEG4+8tkfHe9bmVSWsRp3A35+5PRPdGuXuDm210=";
   };
 
-  cargoHash = "sha256-ttJMtaQfVnFj4/wUz4fn8X/EmUwW+usqhmWhy4Y0AB8=";
+  cargoHash = "sha256-U7W3Ila75XQDwtcVDEzooLxdbcGZCrUU/Ijcx/xhRaM=";
 
   # Work around https://github.com/NixOS/nixpkgs/issues/166205.
   env = lib.optionalAttrs stdenv.cc.isClang {
