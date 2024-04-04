@@ -404,6 +404,13 @@
     '';
   };
 
+  competitest-nvim = super.competitest-nvim.overrideAttrs {
+    dependencies = [ self.nui-nvim ];
+
+    doInstallCheck = true;
+    nvimRequireCheck = "competitest";
+  };
+
   compe-tabnine = super.compe-tabnine.overrideAttrs {
     buildInputs = [ tabnine ];
 
@@ -1017,7 +1024,7 @@
         inherit (old) version src;
         sourceRoot = "${old.src.name}/spectre_oxi";
 
-        cargoHash = "sha256-VDnrJ2EJ8LDykqxYKD1VR8BkDqzzifazJzL/0UsmSCk=";
+        cargoHash = "sha256-tWJyVBYYQWr3ofYnbvfQZdzPQ9o//7XEbdjN5b2frPo=";
 
 
         preCheck = ''

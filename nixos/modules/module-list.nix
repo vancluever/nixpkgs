@@ -98,6 +98,7 @@
   ./hardware/tuxedo-keyboard.nix
   ./hardware/ubertooth.nix
   ./hardware/uinput.nix
+  ./hardware/uni-sync.nix
   ./hardware/usb-modeswitch.nix
   ./hardware/usb-storage.nix
   ./hardware/video/amdgpu-pro.nix
@@ -341,7 +342,6 @@
   ./services/amqp/rabbitmq.nix
   ./services/audio/alsa.nix
   ./services/audio/botamusique.nix
-  ./services/audio/castopod.nix
   ./services/audio/gmediarender.nix
   ./services/audio/gonic.nix
   ./services/audio/goxlr-utility.nix
@@ -798,7 +798,9 @@
   ./services/misc/transfer-sh.nix
   ./services/misc/tzupdate.nix
   ./services/misc/uhub.nix
+  ./services/misc/wastebin.nix
   ./services/misc/weechat.nix
+  ./services/misc/workout-tracker.nix
   ./services/misc/xmr-stak.nix
   ./services/misc/xmrig.nix
   ./services/misc/zoneminder.nix
@@ -1300,12 +1302,14 @@
   ./services/web-apps/bookstack.nix
   ./services/web-apps/c2fmzq-server.nix
   ./services/web-apps/calibre-web.nix
+  ./services/web-apps/castopod.nix
   ./services/web-apps/coder.nix
   ./services/web-apps/changedetection-io.nix
   ./services/web-apps/chatgpt-retrieval-plugin.nix
   ./services/web-apps/cloudlog.nix
   ./services/web-apps/code-server.nix
   ./services/web-apps/convos.nix
+  ./services/web-apps/davis.nix
   ./services/web-apps/dex.nix
   ./services/web-apps/discourse.nix
   ./services/web-apps/documize.nix
@@ -1358,6 +1362,7 @@
   ./services/web-apps/nexus.nix
   ./services/web-apps/nifi.nix
   ./services/web-apps/node-red.nix
+  ./services/web-apps/ocis.nix
   ./services/web-apps/onlyoffice.nix
   ./services/web-apps/openvscode-server.nix
   ./services/web-apps/mobilizon.nix
