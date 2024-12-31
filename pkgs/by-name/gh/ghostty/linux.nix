@@ -32,7 +32,6 @@
   # https://github.com/ghostty-org/ghostty/blob/4b4d4062dfed7b37424c7210d1230242c709e990/build.zig#L106
   withAdwaita ? true,
 }:
-
 let
   zig_hook = zig_0_13.hook.overrideAttrs {
     zig_default_flags = "-Dcpu=baseline -Doptimize=${optimizeLevel} --color off";
@@ -45,7 +44,6 @@ let
   # https://github.com/ghostty-org/ghostty/blob/4b4d4062dfed7b37424c7210d1230242c709e990/src/renderer.zig#L51-L52
   renderer = if stdenv.hostPlatform.isDarwin then "metal" else "opengl";
 in
-
 stdenv.mkDerivation (finalAttrs: {
   inherit
     pname
@@ -58,14 +56,8 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "ghostty-org";
     repo = "ghostty";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-AHI1Z4mfgXkNwQA8xYq4tS0/BARbHL7gQUT41vCxQTM=";
+    hash = "sha256-BiXFNeoL+BYpiqzCuDIrZGQ6JVI8cBOXerJH48CbnxU=";
   };
-
-  # Avoid using runtime hacks to help find X11
-  postPatch = lib.optionalString (appRuntime == "gtk") ''
-    substituteInPlace src/apprt/gtk/x11.zig \
-      --replace-warn 'std.DynLib.open("libX11.so");' 'std.DynLib.open("${lib.getLib libX11}/lib/libX11.so");'
-  '';
 
   deps = callPackage ./deps.nix {
     name = "${finalAttrs.pname}-cache-${finalAttrs.version}";
@@ -113,15 +105,14 @@ stdenv.mkDerivation (finalAttrs: {
       "-Drenderer=${renderer}"
     ]
     ++ lib.mapAttrsToList (name: package: "-fsys=${name} --search-prefix ${lib.getLib package}") {
-      inherit glslang;
+      inherit fontconfig glslang;
     };
 
   zigCheckFlags = finalAttrs.zigBuildFlags;
 
-  # Unit tests currently fail inside the sandbox
-  doCheck = false;
+  doCheck = true;
 
-  /**
+  /*
     Ghostty really likes all of it's resources to be in the same directory, so link them back after we split them
 
     - https://github.com/ghostty-org/ghostty/blob/4b4d4062dfed7b37424c7210d1230242c709e990/src/os/resourcesdir.zig#L11-L52
@@ -164,8 +155,6 @@ stdenv.mkDerivation (finalAttrs: {
     versionCheckHook
   ];
 
-  doInstallCheck = true;
-
   versionCheckProgramArg = [ "--version" ];
 
   passthru = {
@@ -174,5 +163,4 @@ stdenv.mkDerivation (finalAttrs: {
       nixos = nixosTests.terminal-emulators.ghostty;
     };
   };
-
 })

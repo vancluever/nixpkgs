@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   src = fetchurl {
     url = "https://release.files.ghostty.org/${finalAttrs.version}/Ghostty.dmg";
-    sha256 = "sha256-CR96Kz9BYKFtfVKygiEku51XFJk4FfYqfXACeYQ3JlI=";
+    sha256 = "0qs64x4gn0lgqcvbyc118sfq268b7jinqwn4rmdj2b8ps75nh3s0";
   };
 
   nativeBuildInputs = [
